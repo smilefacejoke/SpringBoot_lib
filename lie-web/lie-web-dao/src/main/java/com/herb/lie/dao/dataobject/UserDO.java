@@ -12,4 +12,8 @@ public class UserDO {
     private String name;
 
     private Integer age;
+
+    public String getName() {
+        return null;
+    }
 }

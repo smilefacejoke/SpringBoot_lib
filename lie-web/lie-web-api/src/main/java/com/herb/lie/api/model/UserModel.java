@@ -13,4 +13,6 @@ public class UserModel {
 
     private Integer age;
 
+    public void setId(Long id) {
+    }
 }

@@ -14,6 +14,6 @@ public enum ValidFlagEnum {
     /**
      * 无效数据
      */
-    DISABLE
+    DISABLE;
 
 }
