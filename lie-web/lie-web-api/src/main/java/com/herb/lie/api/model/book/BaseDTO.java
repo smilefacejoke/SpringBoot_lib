@@ -12,6 +12,7 @@ import java.util.Date;
 @Data
 public class BaseDTO {
 
+    private int Id;
 
     private String tmp1;
 
@@ -22,4 +23,36 @@ public class BaseDTO {
     private Date updateDate;
 
     private ValidFlagEnum validFlag;
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public ValidFlagEnum getValidFlag() {
+        return validFlag;
+    }
+
+    public void setValidFlag(ValidFlagEnum validFlag) {
+        this.validFlag = validFlag;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
 }
