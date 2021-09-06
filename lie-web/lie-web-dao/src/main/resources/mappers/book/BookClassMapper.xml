@@ -4,8 +4,24 @@
 <mapper namespace="com.herb.lie.dao.mapper.book.BookClassMapper">
 
 
-    <select id="" parameterType="string" resultType="com.herb.lie.dao.mapper.book.BookClassMapper">
-        SELECT * FROM tb_user
+    <select id="findListByName" parameterType="BookClassDTO" resultType="com.herb.lie.dao.mapper.book.BookClassMapper">
+        SELECT * FROM book_class where name like #{name}
     </select>
+
+    <select id="findById" parameterType="BookClassDTO" resultType="com.herb.lie.dao.mapper.book.BookClassMapper">
+        SELECT * FROM book_class where id=#{id}
+    </select>
+
+    <insert id="insert">
+        INSERT INTO book_class(name,validFlag) values (#{name},#{validFlag})
+    </insert>
+
+    <update id="">
+        update book_class set name=#{name} where id=#{id}
+    </update>
+
+    <delete id="">
+        delete from book_class where id=#{id}
+    </delete>
 
 </mapper>
