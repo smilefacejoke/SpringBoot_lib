@@ -2,11 +2,16 @@ package com.herb.lie.dao.mapper.book;
 
 import com.herb.lie.api.model.book.BookClassDTO;
 
+import org.apache.ibatis.annotations.Mapper;
+
+
 import java.util.List;
 
 /**
  * @author 54350
  */
+
+@Mapper
 public interface BookClassMapper {
 
     /**

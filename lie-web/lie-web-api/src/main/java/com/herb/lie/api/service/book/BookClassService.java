@@ -1,9 +1,12 @@
-package com.herb.lie.api.service;
+package com.herb.lie.api.service.book;
 
 import com.herb.lie.api.constants.ResultDTO;
 import com.herb.lie.api.model.book.BookClassDTO;
 
 
+/**
+ * @author zwt
+ */
 public interface BookClassService {
 
     /**

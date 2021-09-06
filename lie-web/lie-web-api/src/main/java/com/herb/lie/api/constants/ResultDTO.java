@@ -14,7 +14,7 @@ public class ResultDTO {
 
     private String system;
 
-    private int code;
+    private Integer code;
 
     private String msg;
 
@@ -25,12 +25,6 @@ public class ResultDTO {
         this.msg = msg;
     }
 
-    public ResultDTO(String system, int code, String msg, Object data) {
-        this.system = system;
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
-    }
 
     public ResultDTO(int code, String msg, Object data) {
         this.code = code;
