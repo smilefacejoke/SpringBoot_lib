@@ -6,6 +6,7 @@ import com.herb.lie.api.model.book.BookClassDTO;
 import com.herb.lie.api.service.BookClassService;
 import com.herb.lie.dao.mapper.book.BookClassMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * 书籍分类service类
  * @author zwt
  */
+@Service
 public class BookClassServiceImpl implements BookClassService {
 
     @Autowired
