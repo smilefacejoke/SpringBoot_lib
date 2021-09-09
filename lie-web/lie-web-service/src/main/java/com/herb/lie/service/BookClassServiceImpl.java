@@ -3,8 +3,9 @@ package com.herb.lie.service;
 import com.herb.lie.api.constants.ResultDTO;
 import com.herb.lie.api.enums.HttpCode;
 import com.herb.lie.api.model.book.BookClassDTO;
-import com.herb.lie.api.service.BookClassService;
+import com.herb.lie.api.service.book.BookClassService;
 import com.herb.lie.dao.mapper.book.BookClassMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -16,11 +17,12 @@ import java.util.List;
  * 书籍分类service类
  * @author zwt
  */
+
 @Service
 public class BookClassServiceImpl implements BookClassService {
 
     @Autowired
-    private BookClassMapper bookClassMapper;
+    public BookClassMapper bookClassMapper;
 
     @Override
     public ResultDTO findListByName(String name) {
@@ -39,7 +41,7 @@ public class BookClassServiceImpl implements BookClassService {
     @Override
     public ResultDTO findById(int id) {
         //非空判断
-        if (0 == id) {
+        if (id == 0) {
             return new ResultDTO(HttpCode.FAIL.getCode(), "数据id不能为空");
         }
         //业务查找

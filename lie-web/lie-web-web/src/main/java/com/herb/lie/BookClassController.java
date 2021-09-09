@@ -3,7 +3,8 @@ package com.herb.lie;
 import com.herb.lie.api.constants.ResultDTO;
 import com.herb.lie.api.enums.HttpCode;
 import com.herb.lie.api.model.book.BookClassDTO;
-import com.herb.lie.api.service.BookClassService;
+import com.herb.lie.api.service.book.BookClassService;
+import com.herb.lie.service.BookClassServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +25,8 @@ public class BookClassController {
      * 根据名称寻找分类信息
      * @param name 分类名
      */
-    @RequestMapping("/findByName")
-    public ResultDTO findByName(String name){
+    @RequestMapping("/findListByName")
+    public ResultDTO findByListName(String name){
         try {
             return bookClassService.findListByName(name);
         }catch (Exception e){
@@ -42,6 +43,7 @@ public class BookClassController {
         try {
             return bookClassService.findById(id);
         }catch (Exception e){
+            e.printStackTrace();
             return new ResultDTO(HttpCode.ERROR.getCode(),"系统异常");
         }
     }
@@ -55,6 +57,7 @@ public class BookClassController {
         try {
             return bookClassService.insert(bookClassDTO);
         }catch (Exception e){
+            e.printStackTrace();
             return new ResultDTO(HttpCode.ERROR.getCode(),"系统异常");
         }
     }

@@ -1,5 +1,6 @@
 package com.herb.lie.api.model.book;
 
+import com.herb.lie.api.model.BaseDTO;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,8 +14,6 @@ import java.util.Date;
 
 @Data
 public class BookDTO extends BaseDTO implements Serializable {
-
-    private int id;
 
     private String bookName;
 
