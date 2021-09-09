@@ -5,6 +5,9 @@ import com.herb.lie.api.enums.HttpCode;
 import com.herb.lie.api.model.book.BookClassDTO;
 import com.herb.lie.api.service.book.BookClassService;
 import com.herb.lie.service.BookClassServiceImpl;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/bookClass")
 public class BookClassController {
 
+    private Logger logger= LoggerFactory.getLogger(this.getClass());
     @Autowired
     private BookClassService bookClassService;
 
@@ -30,6 +34,7 @@ public class BookClassController {
         try {
             return bookClassService.findListByName(name);
         }catch (Exception e){
+            logger.error("系统异常+"+e);
             return new ResultDTO(HttpCode.ERROR.getCode(),"系统异常");
         }
     }
@@ -43,6 +48,7 @@ public class BookClassController {
         try {
             return bookClassService.findById(id);
         }catch (Exception e){
+            logger.error("系统异常+"+e);
             e.printStackTrace();
             return new ResultDTO(HttpCode.ERROR.getCode(),"系统异常");
         }
@@ -57,6 +63,7 @@ public class BookClassController {
         try {
             return bookClassService.insert(bookClassDTO);
         }catch (Exception e){
+            logger.error("系统异常+"+e);
             e.printStackTrace();
             return new ResultDTO(HttpCode.ERROR.getCode(),"系统异常");
         }
@@ -71,6 +78,7 @@ public class BookClassController {
         try {
             return bookClassService.update(bookClassDTO);
         }catch (Exception e){
+            logger.error("系统异常+"+e);
             return new ResultDTO(HttpCode.ERROR.getCode(),"系统异常");
         }
     }
@@ -85,6 +93,7 @@ public class BookClassController {
         try {
             return bookClassService.delete(id);
         }catch (Exception e){
+            logger.error("系统异常+"+e);
             return new ResultDTO(HttpCode.ERROR.getCode(),"系统异常");
         }
     }
