@@ -1,11 +1,10 @@
-package com.herb.lie.service;
+package com.herb.lie.service.book;
 
 import com.herb.lie.api.constants.ResultDTO;
 import com.herb.lie.api.enums.HttpCode;
-import com.herb.lie.api.model.book.BookClassDTO;
-import com.herb.lie.api.service.book.BookClassService;
-import com.herb.lie.dao.mapper.book.BookClassMapper;
-
+import com.herb.lie.api.model.book.BookDTO;
+import com.herb.lie.api.service.book.BookService;
+import com.herb.lie.dao.mapper.book.BookMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +15,15 @@ import org.springframework.util.StringUtils;
 import java.util.List;
 
 /**
- * 书籍分类service类
- * @author zwt
+ * @author 54350
  */
-
 @Service
-public class BookClassServiceImpl implements BookClassService {
+public class BookServiceImpl implements BookService {
 
     private Logger logger= LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public BookClassMapper bookClassMapper;
+    private BookMapper bookMapper;
 
     @Override
     public ResultDTO findListByName(String name) {
@@ -36,9 +33,9 @@ public class BookClassServiceImpl implements BookClassService {
             return new ResultDTO(HttpCode.FAIL.getCode(), "关键搜索字不能为空");
         }
         //业务查找
-        List<BookClassDTO> list = bookClassMapper.findListByName(name);
+        List<BookDTO> list = bookMapper.findListByName(name);
         if (CollectionUtils.isEmpty(list)) {
-            return new ResultDTO(HttpCode.FAIL.getCode(), "暂无对应分类消息");
+            return new ResultDTO(HttpCode.FAIL.getCode(), "暂无对应书籍消息");
         }
         logger.info("出参:"+list);
         return new ResultDTO(HttpCode.SUCCESS.getCode(), "查找成功", list);
@@ -52,22 +49,26 @@ public class BookClassServiceImpl implements BookClassService {
             return new ResultDTO(HttpCode.FAIL.getCode(), "数据id不能为空");
         }
         //业务查找
-        BookClassDTO bookClassDTO = bookClassMapper.findById(id);
-        if (null == bookClassDTO) {
-            return new ResultDTO(HttpCode.FAIL.getCode(), "暂无对应分类消息");
+        BookDTO bookDTO = bookMapper.findById(id);
+        if (null == bookDTO) {
+            return new ResultDTO(HttpCode.FAIL.getCode(), "暂无对应书籍消息");
         }
-        logger.info("出参:"+bookClassDTO);
-        return new ResultDTO(HttpCode.SUCCESS.getCode(), "查找成功", bookClassDTO);
+        logger.info("出参:"+bookDTO);
+        return new ResultDTO(HttpCode.SUCCESS.getCode(), "查找成功", bookDTO);
     }
 
+
     @Override
-    public ResultDTO insert(BookClassDTO entity) {
+    public ResultDTO insert(BookDTO entity) {
         logger.info("入参:"+entity);
         //非空判断
-        if (StringUtils.isEmpty(entity.getName())) {
-            return new ResultDTO(HttpCode.FAIL.getCode(), "分类名称不能为空");
+        if (StringUtils.isEmpty(entity.getBookName())) {
+            return new ResultDTO(HttpCode.FAIL.getCode(), "书籍名称不能为空");
         }
-        int influenceNumber = bookClassMapper.insert(entity);
+        if (StringUtils.isEmpty(entity.getBookClassId())) {
+            return new ResultDTO(HttpCode.FAIL.getCode(), "书籍分类编号不能为空");
+        }
+        int influenceNumber = bookMapper.insert(entity);
         if (influenceNumber <= 0) {
             //新增失败
             return new ResultDTO(HttpCode.FAIL.getCode(), "新增失败");
@@ -77,13 +78,13 @@ public class BookClassServiceImpl implements BookClassService {
     }
 
     @Override
-    public ResultDTO update(BookClassDTO entity) {
+    public ResultDTO update(BookDTO entity) {
         logger.info("入参:"+entity);
         //非空判断
         if (StringUtils.isEmpty(entity.getId())) {
             return new ResultDTO(HttpCode.FAIL.getCode(), "数据id不能为空");
         }
-        int influenceNumber = bookClassMapper.update(entity);
+        int influenceNumber = bookMapper.update(entity);
         if (influenceNumber <= 0) {
             //更新失败
             return new ResultDTO(HttpCode.FAIL.getCode(), "更新失败");
@@ -99,12 +100,11 @@ public class BookClassServiceImpl implements BookClassService {
         if (0==id) {
             return new ResultDTO(HttpCode.FAIL.getCode(), "数据id不能为空");
         }
-        int influenceNumber = bookClassMapper.delete(id);
+        int influenceNumber = bookMapper.delete(id);
         if (influenceNumber <= 0) {
             //删除失败
             return new ResultDTO(HttpCode.FAIL.getCode(), "删除失败");
         }
         return new ResultDTO(HttpCode.SUCCESS.getCode(), "删除成功");
     }
-
 }

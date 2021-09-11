@@ -13,19 +13,90 @@ import java.util.Date;
  */
 
 @Data
-public class BookDTO extends BaseDTO implements Serializable {
+public class BookDTO extends BaseDTO {
 
     private String bookName;
 
-    private int bookClassId;
+    private Integer bookClassId;
 
     private BigDecimal bookPrice;
 
     private String bookPublish;
 
+    private String bookAuthor;
+
     private String bookImg;
 
     private Date publishDate;
 
+    public void setBookClassId(Integer bookClassId) {
+        this.bookClassId = bookClassId;
+    }
 
+    public String getBookAuthor() {
+        return bookAuthor;
+    }
+
+    public void setBookAuthor(String bookAuthor) {
+        this.bookAuthor = bookAuthor;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public int getBookClassId() { return bookClassId; }
+
+    public void setBookClassId(int bookClassId) {
+        this.bookClassId = bookClassId;
+    }
+
+    public BigDecimal getBookPrice() {
+        return bookPrice;
+    }
+
+    public void setBookPrice(BigDecimal bookPrice) {
+        this.bookPrice = bookPrice;
+    }
+
+    public String getBookPublish() {
+        return bookPublish;
+    }
+
+    public void setBookPublish(String bookPublish) {
+        this.bookPublish = bookPublish;
+    }
+
+    public String getBookImg() {
+        return bookImg;
+    }
+
+    public void setBookImg(String bookImg) {
+        this.bookImg = bookImg;
+    }
+
+    public Date getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    @Override
+    public String toString() {
+        return "BookDTO{" +
+                "bookName='" + bookName + '\'' +
+                ", bookClassId=" + bookClassId +
+                ", bookPrice=" + bookPrice +
+                ", bookPublish='" + bookPublish + '\'' +
+                ", bookAuthor='" + bookAuthor + '\'' +
+                ", bookImg='" + bookImg + '\'' +
+                ", publishDate=" + publishDate +
+                '}';
+    }
 }
