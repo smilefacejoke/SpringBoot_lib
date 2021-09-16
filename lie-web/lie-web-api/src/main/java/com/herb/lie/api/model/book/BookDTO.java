@@ -3,7 +3,6 @@ package com.herb.lie.api.model.book;
 import com.herb.lie.api.model.BaseDTO;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -21,6 +20,8 @@ public class BookDTO extends BaseDTO {
 
     private BigDecimal bookPrice;
 
+    private Integer bookCount;
+
     private String bookPublish;
 
     private String bookAuthor;
@@ -28,6 +29,7 @@ public class BookDTO extends BaseDTO {
     private String bookImg;
 
     private Date publishDate;
+
 
     public void setBookClassId(Integer bookClassId) {
         this.bookClassId = bookClassId;
@@ -39,6 +41,14 @@ public class BookDTO extends BaseDTO {
 
     public void setBookAuthor(String bookAuthor) {
         this.bookAuthor = bookAuthor;
+    }
+
+    public Integer getBookCount() {
+        return bookCount;
+    }
+
+    public void setBookCount(Integer bookCount) {
+        this.bookCount = bookCount;
     }
 
     public void setBookName(String bookName) {

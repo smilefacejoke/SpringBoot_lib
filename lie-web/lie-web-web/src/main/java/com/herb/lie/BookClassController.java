@@ -8,6 +8,7 @@ import com.herb.lie.api.service.book.BookClassService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,12 +27,12 @@ public class BookClassController {
 
     /**
      * 根据名称寻找分类信息
-     * @param name 分类名
+     * @param bookClassDTO 分类名
      */
     @RequestMapping("/findListByName")
-    public ResultDTO findByListName(String name){
+    public ResultDTO findByListName(@RequestBody BookClassDTO bookClassDTO){
         try {
-            return bookClassService.findListByName(name);
+            return bookClassService.findListByName(bookClassDTO.getName());
         }catch (Exception e){
             logger.error("系统异常+"+e);
             return new ResultDTO(HttpCode.ERROR.getCode(),"系统异常");
@@ -40,12 +41,12 @@ public class BookClassController {
 
     /**
      * 根据id查找数据
-     * @param id 数据主键
+     * @param bookClassDTO 数据主键
      */
     @RequestMapping("/findById")
-    public ResultDTO findById(int id){
+    public ResultDTO findById(@RequestBody BookClassDTO bookClassDTO){
         try {
-            return bookClassService.findById(id);
+            return bookClassService.findById(bookClassDTO.getId());
         }catch (Exception e){
             logger.error("系统异常+"+e);
             e.printStackTrace();
@@ -84,13 +85,13 @@ public class BookClassController {
 
     /**
      * 根据id主键删除
-     * @param id
+     * @param bookClassDTO
      * @return
      */
     @RequestMapping("/delete")
-    public ResultDTO delete(int id){
+    public ResultDTO delete(@RequestBody BookClassDTO bookClassDTO){
         try {
-            return bookClassService.delete(id);
+            return bookClassService.delete(bookClassDTO.getId());
         }catch (Exception e){
             logger.error("系统异常+"+e);
             return new ResultDTO(HttpCode.ERROR.getCode(),"系统异常");
