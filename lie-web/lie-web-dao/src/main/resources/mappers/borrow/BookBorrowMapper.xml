@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.herb.lie.dao.mapper.borrow.BookBorrowMapper">
+
+    <resultMap id="BookBorrowDTO" type="com.herb.lie.api.model.borrow.BookBorrowDTO">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="book_price" property="bookPrice"/>
+        <result column="book_id" property="bookId"/>
+        <result column="book_name" property="bookName"/>
+        <result column="count" property="count"/>
+        <result column="start_date" property="startDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="price" property="price"/>
+        <result column="tread_fee" property="tradeFee"/>
+
+        <result column="valid_flag" property="validFlag"/>
+        <result column="create_date" property="createDate"/>
+        <result column="update_date" property="updateDate"/>
+        <result column="tmp1" property="tmp1"/>
+        <result column="tmp2" property="tmp2"/>
+    </resultMap>
+
+    <sql id="base_column">
+        id,user_id,user_name,book_id,book_name,count,start_date,end_date,price,tread_fee,valid_flag,tmp1,tmp2,create_date,update_date
+    </sql>
+
+
+
+</mapper>

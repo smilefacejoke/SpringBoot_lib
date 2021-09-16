@@ -26,26 +26,26 @@ public class BookController {
 
     /**
      * 根据名称寻找书籍信息
-     * @param name 分类名
+     * @param bookDTO 分类名
      */
     @RequestMapping("/findListByName")
-    public ResultDTO findByListName(String name){
+    public ResultDTO findByListName(@RequestBody BookDTO bookDTO){
         try {
-            return bookService.findListByName(name);
+            return bookService.findListByName(bookDTO.getBookName());
         }catch (Exception e){
             logger.error("系统异常+"+e);
             return new ResultDTO(HttpCode.ERROR.getCode(),"系统异常");
         }
     }
-
     /**
+     * TODO:基础数据类型int会导致请求方式为form表单的形式
      * 根据id查找数据
-     * @param id 数据主键
+     * @param bookDTO 数据主键
      */
     @RequestMapping("/findById")
-    public ResultDTO findById(int id){
+    public ResultDTO findById(@RequestBody /**int id*/  BookDTO bookDTO){
         try {
-            return bookService.findById(id);
+            return bookService.findById(bookDTO.getId());
         }catch (Exception e){
             logger.error("系统异常+"+e);
             return new ResultDTO(HttpCode.ERROR.getCode(),"系统异常");
@@ -84,13 +84,13 @@ public class BookController {
 
     /**
      * 根据id主键删除
-     * @param id
+     * @param bookDTO
      * @return
      */
     @RequestMapping("/delete")
-    public ResultDTO delete(int id){
+    public ResultDTO delete(@RequestBody BookDTO bookDTO){
         try {
-            return bookService.delete(id);
+            return bookService.delete(bookDTO.getId());
         }catch (Exception e){
             logger.error("系统异常+"+e);
             return new ResultDTO(HttpCode.ERROR.getCode(),"系统异常");
