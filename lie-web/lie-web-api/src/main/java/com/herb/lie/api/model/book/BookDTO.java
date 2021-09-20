@@ -103,6 +103,7 @@ public class BookDTO extends BaseDTO {
                 "bookName='" + bookName + '\'' +
                 ", bookClassId=" + bookClassId +
                 ", bookPrice=" + bookPrice +
+                ", bookCount=" + bookCount +
                 ", bookPublish='" + bookPublish + '\'' +
                 ", bookAuthor='" + bookAuthor + '\'' +
                 ", bookImg='" + bookImg + '\'' +

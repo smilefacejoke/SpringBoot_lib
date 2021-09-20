@@ -24,7 +24,7 @@ public class BookBorrowDTO extends BaseDTO {
 
     private Date startDate;
 
-    private Date endDate;
+    private Date endDate;  
 
     private BigDecimal price;
 
