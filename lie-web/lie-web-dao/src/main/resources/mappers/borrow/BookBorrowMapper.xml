@@ -14,7 +14,7 @@
         <result column="start_date" property="startDate"/>
         <result column="end_date" property="endDate"/>
         <result column="price" property="price"/>
-        <result column="tread_fee" property="tradeFee"/>
+        <result column="trade_fee" property="tradeFee"/>
 
         <result column="valid_flag" property="validFlag"/>
         <result column="create_date" property="createDate"/>
@@ -24,9 +24,41 @@
     </resultMap>
 
     <sql id="base_column">
-        id,user_id,user_name,book_id,book_name,count,start_date,end_date,price,tread_fee,valid_flag,tmp1,tmp2,create_date,update_date
+        id,user_id,user_name,book_id,book_name,count,start_date,end_date,price,trade_fee,valid_flag,tmp1,tmp2,create_date,update_date
     </sql>
 
 
+    <insert id="insert">
+        INSERT INTO book_borrow(user_id,user_name,book_id,book_name,count,start_date,end_date,price,trade_fee,create_date,valid_Flag)
+        values (#{userId},#{userName},#{bookId},#{bookName},#{count},#{startDate},#{endDate},#{price},#{tradeFee},#{createDate},#{validFlag})
+    </insert>
+
+
+    <select id="findById" parameterType="Integer" resultMap="BookBorrowDTO">
+        select <include refid="base_column"></include>
+        from book_borrow where id=#{id}
+    </select>
+
+    <update id="update">
+        UPDATE book_borrow
+        <set>
+            <if test="count != null and count >= 0">
+                count=#{count},
+            </if>
+            <if test="tmp1 != null">
+                tmp1=#{tmp1},
+            </if>
+            <if test="tmp2 != null">
+                tmp2=#{tmp2},
+            </if>
+            <if test="updateDate != null">
+                update_date=#{updateDate},
+            </if>
+            <if test="validFlag != null">
+                valid_flag=#{validFlag},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
 
 </mapper>
